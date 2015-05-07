@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to Our Homepage</title>
+    <script src="http://cdn.jsdelivr.net/angularjs/1.3.14/angular.js"></script>
+    <script src="https://code.angularjs.org/1.3.14/angular-route.min.js" ></script>
+    <script src="script/main.js" type="application/javascript"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+                    
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body ng-app="app" >
+   
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">EmergingScripts</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" ng-controller="HeaderController">
+                    <ul class="nav navbar-nav">
+                        <li ng-class="{ active: isActive('/')}"><a href="#/">Home</a>
+                        </li>
+                        <li ng-class="{ active: isActive('/ourstory')}"><a href="#ourstory">Our Story</a>
+                        </li>
+                        <li ng-class="{ active: isActive('/service')}"><a href="#service">Services</a>
+                        </li>
+                         <li ng-class="{ active: isActive('/contact')}"><a href="#contact">Contact</a>
+                        </li>
+                    </ul>
+                    
+                        <button id="signout" class="pull-right btn btn-default btn-sm">Sign Out</button>
+                        
+                 
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+        <div  class="container">
+            <div ng-view></div>
+            <hr class="hrline">
+             <footer class="row">
+            <div class="col-xs-4">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae blanditiis iste quia dolorum atque ad cumque assumenda! Molestiae consequuntur, reiciendis animi accusantium, laborum alias esse, placeat ipsa perferendis, ea aut.
+            </div>
+            <div class="col-xs-4">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque unde culpa at accusantium eligendi? Eos, odit placeat asperiores fugit. Dolore id perferendis eligendi consequatur nam deleniti obcaecati ducimus modi voluptate.
+            </div>
+            <div class="col-xs-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel molestiae dignissimos nisi. Quam rem cumque eligendi consequatur odio, explicabo ab omnis dolorem id soluta. Consequatur accusantium, hic nihil itaque similique.</div>
+        </footer>
+        </div>
+       
+</body>
+
+</html>
