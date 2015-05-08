@@ -31,25 +31,27 @@
             <div class="form-group">
                 <label for="firstName" class="col-sm-2 control-label">First Name</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="firstname" ng-model="Person.FirstName" id="firstName" placeholder="John" />
+                    <input type="text" class="form-control" name="firstname" ng-model="Person.FirstName" id="firstName" placeholder="" required="" />
+                    <div ng-show="myForm.firstname.$error.required && submitted">Tell us your first name.</div>
                 </div>
-                <div ng-show="myForm.firstname.$error.required">Tell us your first name.</div>
             </div>
+
             <div class="form-group">
                 <label for="lastName" class="col-sm-2 control-label">Last Name</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" name="lastname" ng-model="Person.LastName" id="lastName" placeholder="" required="" />
-                    <div ng-show="myForm.lastname.$error.required">Tell us your last name.</div>
+                    <div ng-show="myForm.lastname.$error.required && submitted">Tell us your last name.</div>
                 </div>
             </div>
             <div class="form-group">
                 <label for="age" class="col-sm-2 control-label">Age</label>
                 <div class="col-sm-10">
-                    <input type="number" class="form-control" name="age" ng-model="Person.Age" id="age" placeholder="1">
+                    <input type="number" class="form-control" name="age" ng-model="Person.Age" id="age" required min="1"> {{myForm.age.$error}} {{myForm.age.$error.required}}
+                    <div ng-show="myForm.age.$error.required && submitted">Tell us your age</div>
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-sm-2 control-label">Email</div>
+                <label class="col-sm-2 control-label">Email</label>
                 <div class="col-sm-10">
                     <input type="email" class="form-control" name="email" ng-model="Person.Email" id="email" placeholder="john@hello.com">
                 </div>
