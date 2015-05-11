@@ -65,7 +65,7 @@ app.config(function ($routeProvider) {
 
 
 app.directive('createPerson', function () {
-    var controller = ['$scope', function ($scope) {
+    var controller = ['$scope', 'person', function ($scope, person) {
 
 
         function init() {
@@ -77,7 +77,7 @@ app.directive('createPerson', function () {
             debugger;
             //init();
             $("#createPerson").modal('toggle');
-            $scope.persons.push(Person);
+            // $scope.persons.push(Person);
             $scope.Person = {};
         }
 
