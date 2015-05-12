@@ -21,7 +21,9 @@
         </thead>
         <tbody>
             <tr ng-repeat="person in persons">
-                <th scope="row">{{$index+1}}</th>
+                <th scope="row">
+                    <a href="#detail/{{$index}}">{{$index+1}}</a>
+                </th>
                 <td>{{person.firstname}}</td>
                 <td>{{person.lastname}}</td>
                 <td>{{person.age}}</td>
@@ -42,10 +44,7 @@
                 <create-person datasource="persons" add="addPerson()">
                 </create-person>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" ng-click="submit(Person)">Save changes</button>
-            </div>
+
         </div>
     </div>
 </div>

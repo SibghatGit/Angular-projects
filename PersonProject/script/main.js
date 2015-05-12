@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngRoute']);
+var app = angular.module('app', ['ngRoute', 'ng']);
 
 app.config(function ($routeProvider) {
     $routeProvider
@@ -10,86 +10,60 @@ app.config(function ($routeProvider) {
             templateUrl: 'create.html',
             controller: 'create'
         })
+        .when('/detail/:id', {
+            templateUrl: 'detail.html',
+            controller: 'detail'
+        })
 }).controller('Index', ['$scope', '$http', 'person', function Index($scope, $http, Person) {
-    debugger;
-
     $http.get('json/person.json')
         .then(function (res) {
-
             Person.newData(res.data);
             $scope.persons = Person.get();
         });
-
-    $scope.submit = function (Person) {
+    $scope.submit = function (person) {
         $("#createPerson").modal('toggle');
-        $scope.persons.push(Person);
         $scope.Person = {};
     }
+}]).controller('create', ['$scope', 'person', '$location', function Create($scope, person, $location) {
 
-    function reset() {
-
-    }
-}]).controller('create', ['$scope', 'person', function Create($scope, person) {
-    $scope.Person = {};
+}]).controller('detail', ['$scope', 'person', '$routeParams', function Detail($scope, person, $routeParams) {
     debugger;
-    person.set({
-        "firstname": "Tate",
-        "lastname": "Imani",
-        "age": 64,
-        "company": "Urna Associates"
-    });
+    var person = person.get($routeParams.id);
 
-}]).factory('person', [function person() {
-
-    var Persons = new Array();
-
-    function getPerson() {
-        return Persons;
-    }
-    return {
-        get: getPerson,
-        set: function (data) {
-            Persons.push(data);
-        },
-        newData: function (data) {
-            debugger;
-            Persons = Persons.length == 0 ? data : Persons;
-        }
-    }
-
-    }]);
-
-
-
-
-
-
-app.directive('createPerson', function () {
+}]).controller('HeaderController', function ($scope, $location) {
+    $scope.isActive = function (viewLocation) {
+        return viewLocation === $location.path();
+    };
+}).directive('createPerson', ['person', function (Person) {
     var controller = ['$scope', 'person', function ($scope, person) {
-
-
-        function init() {
-            $scope.persons = $scope.datasource;
-        }
-        init();
-
-        $scope.submit = function (Person) {
-            debugger;
-            //init();
+        $scope.submit = function (person) {
             $("#createPerson").modal('toggle');
-            // $scope.persons.push(Person);
+            Person.add(person);
             $scope.Person = {};
         }
-
     }];
     return {
         scope: {
-            datasource: '=',
-            add: '&',
+            datasource: '='
         },
         controller: controller,
         templateUrl: '_create.html'
-
-
     }
-});
+}]).factory('person', ['$location', function person($location) {
+    var Persons = new Array();
+
+    function getPerson(data) {
+        return (typeof (data) != "undefined") ? Persons[data] : Persons;
+        // return Persons;
+    }
+    return {
+        get: getPerson,
+        add: function (data) {
+            Persons.push(data);
+            $location.path('/');
+        },
+        newData: function (data) {
+            Persons = Persons.length == 0 ? data : Persons;
+        }
+    }
+    }]);
