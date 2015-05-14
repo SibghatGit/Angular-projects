@@ -24,11 +24,14 @@ app.config(function ($routeProvider) {
         $("#createPerson").modal('toggle');
         $scope.Person = {};
     }
+    $scope.delete = function (data) {
+        Person.delete(data);
+    }
 }]).controller('create', ['$scope', 'person', '$location', function Create($scope, person, $location) {
 
 }]).controller('detail', ['$scope', 'person', '$routeParams', function Detail($scope, person, $routeParams) {
-    debugger;
-    var person = person.get($routeParams.id);
+    $scope.person = person.get($routeParams.id);
+
 
 }]).controller('HeaderController', function ($scope, $location) {
     $scope.isActive = function (viewLocation) {
@@ -54,7 +57,10 @@ app.config(function ($routeProvider) {
 
     function getPerson(data) {
         return (typeof (data) != "undefined") ? Persons[data] : Persons;
-        // return Persons;
+    }
+
+    function deletePerson(index) {
+        Persons.splice(index, 1);
     }
     return {
         get: getPerson,
@@ -62,6 +68,7 @@ app.config(function ($routeProvider) {
             Persons.push(data);
             $location.path('/');
         },
+        delete: deletePerson,
         newData: function (data) {
             Persons = Persons.length == 0 ? data : Persons;
         }

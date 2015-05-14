@@ -17,6 +17,7 @@
                 <th>Last Name</th>
                 <th>Age</th>
                 <th>Company</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -28,6 +29,10 @@
                 <td>{{person.lastname}}</td>
                 <td>{{person.age}}</td>
                 <td>{{person.company}}</td>
+                <td>
+                    <button type="button" class="btn " data-dismiss="modal" aria-label="Delete"><span aria-hidden="true" ng-click='delete($index)'>Delete</span>
+                    </button>
+                </td>
             </tr>
         </tbody>
     </table>
